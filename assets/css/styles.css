@@ -34,5 +34,97 @@ a {
 }
 
 .border-shadow {
+  box-shadow: 1px 3px 10px grey;
   border: 1px solid;
+}
+.inline {
+  display: inline-block;
+}
+
+.text-gradient {
+  background: linear-gradient(right, purple blue);
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+}
+
+#header nav {
+  background-color: lightgreen;
+  padding: 1em 0;
+  width: 100%;
+}
+
+#site-main {
+  margin-top: 6em;
+}
+
+#site-main .container .box-nav a {
+  font-size: 1em;
+  padding: 0.5em 1em;
+}
+
+#site-main.container form {
+  margin: 2em 0;
+}
+table {
+  border-spacing: 0px;
+  width: 100%;
+  margin-top: 20px;
+}
+th {
+  padding: 0.75em;
+  vertical-align: top;
+  text-align: center;
+  border-top: 2px solid black;
+}
+tr td {
+  padding: 0.75em;
+  vertical-align: top;
+  text-align: center;
+  margin-top: 5px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+tr td a {
+  padding: 0.3em 1em;
+  font-size: 1.1em;
+  margin: 0 0.2em;
+}
+
+tbody tr:hover {
+  background-color: lightgreen;
+}
+a:hover {
+  background-color: aquamarine;
+}
+
+thead {
+  background-color: rgb(1, 1, 46);
+  color: white;
+}
+
+@media only screen and (max-width: 1374px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid black;
+  }
+
+  td {
+    border: none;
+    position: relative;
+  }
 }
