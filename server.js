@@ -24,6 +24,18 @@ app.use("/script", express.static(path.resolve(__dirname, "assets/script")));
 app.get("/", (req, res) => {
   res.render("index");
 }); //route
+
+app.get("/add-project", (req, res) => {
+  res.render("add_project");
+}); //route
+
+app.get("/all-issues", (req, res) => {
+  res.render("all_issues");
+}); //route
+
+app.get("/add-issue", (req, res) => {
+  res.render("add_issue");
+}); //route
 app.listen(port, () => {
   console.log(`server is running on port http://localhost:${port}`);
 });
