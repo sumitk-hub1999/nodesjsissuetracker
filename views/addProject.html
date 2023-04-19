@@ -37,46 +37,41 @@
     <main id="site-main">
       <div class="container">
         <div class="box-nav d-flex justify-between">
-          <a href="/add-user" class="border-shadow">
-            <span class="text-gradient"
-              >New User<i class="fa fa-user" aria-hidden="true"></i
-            ></span>
-          </a>
+          <div class="filter">
+            <a href="/" class="fas fa-angle-double-left">All Projects</a>
+          </div>
+        </div>
+        <div class="form-title text-center">
+          <h2>New Project</h2>
+          <span>Use below form to add new Project</span>
         </div>
         <!-- form handling -->
-        <form action="/" method="POST">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
-                <th>Project-Name</th>
-
-                <th>Author</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Web App</td>
-
-                <td>sk</td>
-
-                <td>
-                  <a href="#" class="btn border-shadow update">
-                    <span class="text-gradient"
-                      ><i class="fas fa-pencil alt"></i
-                    ></span>
-                  </a>
-                  <a href="#" class="btn border-shadow update">
-                    <span class="text-gradient"
-                      ><i class="fas fa-times"></i
-                    ></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <form method="POST" id="update-user">
+          <div class="new-issue">
+            <div class="form-group">
+              <label for="name">Project-Name</label>
+              <input
+                type="text"
+                name="project-name"
+                value=""
+                placeholder="add name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="issue">Author</label>
+              <input
+                type="text"
+                name="author"
+                value=""
+                placeholder="add author"
+              />
+            </div>
+           
+            </div>
+            <div class="form-group">
+                <button class="btn" type="submit">Save</button>
+              </div>
+          </div>
         </form>
       </div>
     </main>
