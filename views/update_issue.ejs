@@ -1,0 +1,68 @@
+<%- include('extra/_header') %>
+<main id="site-main">
+  <div class="container">
+    <div class="box-nav d-flex justify-between">
+      <div class="filter">
+        <a href="all-issues" class="fas fa-angle-double-left">All Issues</a>
+      </div>
+    </div>
+    <div class="form-title text-center">
+      <h2>Update Issue</h2>
+      <span>Use below form to update issue</span>
+    </div>
+    <!-- form handling -->
+    <form method="POST" id="update-user">
+      <div class="new-issue">
+        <div class="form-group">
+          <label for="issue">Issue</label>
+          <input type="text" name="issue" value="" placeholder="add issue" />
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" name="author" value="" placeholder="add author" />
+        </div>
+        <div class="form-group">
+          <label for="issue">Description</label>
+          <input type="text" name="issue" value="" placeholder="add issue" />
+        </div>
+        <div class="form-group">
+          <label for="label">Add Label</label>
+          <div class="radio inline">
+            <input type="radio" id="radio-1" name="bug" value="bug" />
+            <label for="radio-1" class="radio-label">bug</label>
+          </div>
+          <div class="radio inline">
+            <input type="radio" id="radio-2" name="error" value="error" />
+            <label for="radio-2" class="radio-label">error</label>
+          </div>
+          <div class="radio inline">
+            <input
+              type="radio"
+              id="radio-3"
+              name="major-fault"
+              value="major-fault"
+            />
+            <label for="radio-3" class="radio-label">major fault</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="label">Status</label>
+          <div class="radio inline">
+            <input type="radio" id="radio-4" name="status" value="Active" />
+            <label for="radio-4" class="radio-label">Active</label>
+          </div>
+          <div class="radio inline">
+            <input type="radio" id="radio-5" name="status" value="Inactive" />
+            <label for="radio-5" class="radio-label">Inactive</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+<%- include('extra/_footer') %>
