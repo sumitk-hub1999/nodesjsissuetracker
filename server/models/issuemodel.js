@@ -1,23 +1,20 @@
 const mongoose = require("mongoose");
 
 var issueSchema = new mongoose.Schema({
-  Issue: {
+  issue: {
     type: String,
-    required: true,
   },
   author: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
   label: String,
   status: String,
 });
 
-const issuedb = mongoose.model("issuedb");
+const issuedb = mongoose.model("issuedb", issueSchema);
 
 module.exports = issuedb;
 //model created!!, create controller

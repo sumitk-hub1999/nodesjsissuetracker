@@ -1,13 +1,16 @@
 var userdb = require("../models/model");
-
+var bodyParser = require("body-parser");
 //creae and save new project
 exports.create = (req, res) => {
-  if (!req.body) {
+  console.log(req.body);
+  if (!req.body || req.body === undefined) {
     res.status(400).send({ message: "content cannot be empty" });
     return;
   } //post request, all data of form stored in body of request object
 
   //new project
+  console.log(req.body);
+
   const project = new userdb({
     name: req.body.name,
     description: req.body.description,
@@ -19,6 +22,7 @@ exports.create = (req, res) => {
     .save(project)
     .then((data) => {
       res.send(data);
+      console.log(data);
     })
     .catch((err) => {
       res.status(500).send({
