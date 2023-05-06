@@ -33,14 +33,30 @@ exports.create = (req, res) => {
 
 //retrieve and return all projects also single project
 exports.find = (req, res) => {
-  userdb
-    .find() //returns all the records of the db
-    .then((project) => {
-      res.send(project);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message || "error" });
-    });
+  if (req.query.id) {
+    const id = req.query.id;
+    userdb
+      .findById(id)
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({ message: "not found id" + id });
+        } else {
+          res.send(data);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({ message: "error retrieving user with id" + id });
+      });
+  } else {
+    userdb
+      .find() //returns all the records of the db
+      .then((project) => {
+        res.send(project);
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message || "error" });
+      });
+  }
 };
 //update a new project by project id
 exports.update = (req, res) => {
