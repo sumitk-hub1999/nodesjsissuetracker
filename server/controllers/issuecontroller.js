@@ -32,9 +32,54 @@ exports.create = (req, res) => {
 };
 
 //retrieve and return all projects also single project
-exports.find = (req, res) => {};
+exports.find = (req, res) => {
+  issuedb
+    .find() //returns all the records of the db
+    .then((issue) => {
+      res.send(issue);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message || "error" });
+    });
+};
 //update a new project by project id
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({ message: "data to update cannot be empty" });
+  }
+  const id = req.params.id;
+  issuedb
+    .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({ message: `cannout update project with ${id}` });
+      } else {
+        res.send(data);
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err + "error in updation" });
+    });
+};
 
 //Delete a user with specified user id in the request
-exports.delete = (req, res) => {};
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  issuedb
+    .findByIdAndDelete(id)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({ message: `cannot delete ${id}` });
+      } else {
+        res.send({
+          message: "issue was deleted successfully",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "couldnt delete id" + id,
+      });
+      console.log(err);
+    });
+};
