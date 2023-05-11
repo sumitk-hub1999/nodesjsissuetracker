@@ -1,6 +1,16 @@
 //for maintaing callback functions, allows us to render different files
+const axios = require("axios");
 exports.homeRoutes = (req, res) => {
-  res.render("index");
+  //get request to /api/projects
+  axios
+    .get("http://localhost:3000/api/projects")
+    .then(function (response) {
+      //console.log(response);
+      res.render("index", { projects: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };
 
 exports.add_project = (req, res) => {
@@ -8,7 +18,16 @@ exports.add_project = (req, res) => {
 };
 
 exports.all_issues = (req, res) => {
-  res.render("all_issues");
+  axios
+    .get("http://localhost:3000/api/projects/id")
+    .then(function (response) {
+      //console.log(response);
+      res.render("all_issues", { issues: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+  //res.render("all_issues");
 };
 
 exports.add_issue = (req, res) => {

@@ -1,18 +1,41 @@
 const mongoose = require("mongoose");
 
-var issueSchema = new mongoose.Schema({
-  issue: {
-    type: String,
+var issueSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    author: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    labels: [
+      {
+        type: String,
+        trim: true,
+        required: true,
+      },
+    ],
+    status: [
+      {
+        type: String,
+        trim: true,
+        required: true,
+      },
+    ],
   },
-  author: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  label: String,
-  status: String,
-});
+  {
+    timestamps: true,
+  }
+);
 
 const issuedb = mongoose.model("issuedb", issueSchema);
 

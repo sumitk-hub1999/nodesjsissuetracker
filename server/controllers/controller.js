@@ -1,4 +1,5 @@
 var userdb = require("../models/model");
+var issuedb = require("../models/issuemodel");
 var bodyParser = require("body-parser");
 //creae and save new project
 exports.create = (req, res) => {
@@ -52,6 +53,94 @@ exports.find = (req, res) => {
       .find() //returns all the records of the db
       .then((project) => {
         res.send(project);
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message || "error" });
+      });
+  }
+};
+module.exports.createIssue = async function (req, res) {
+  try {
+    let project = await userdb.findById(req.query.id);
+    console.log(project);
+    if (project) {
+      const issue = new issuedb({
+        issue: req.body.issue,
+        author: req.body.author,
+        description: req.body.description,
+        label: req.body.label,
+        status: req.body.status,
+      });
+
+      project.issues.push(issue);
+
+      issuedb
+        .save(issue)
+        .then((data) => {
+          res.send(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || "some error occured",
+          });
+        });
+
+      if (!(typeof req.body.labels === "string")) {
+        for (let label of req.body.labels) {
+          let isPresent = project.labels.find((obj) => obj == label);
+          if (!isPresent) {
+            project.labels.push(label);
+          }
+        }
+      } else {
+        let isPresent = project.labels.find((obj) => obj == req.body.labels);
+        if (!isPresent) {
+          project.labels.push(req.body.labels);
+        }
+      }
+
+      await userdb
+        .save(project)
+        .then((data) => {
+          res.send(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || "some error occured",
+          });
+        });
+      return res.redirect(`back`);
+    } else {
+      return res.redirect("back");
+    }
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+//find issue
+exports.findIssue = (req, res) => {
+  if (req.query.id) {
+    const id = req.query.id;
+    issuedb
+      .findById(id)
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({ message: "not found id" + id });
+        } else {
+          res.send(data);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({ message: "error retrieving user with id" + id });
+      });
+  } else {
+    issuedb
+      .find() //returns all the records of the db
+      .then((issue) => {
+        res.send(issue);
       })
       .catch((err) => {
         res.status(500).send({ message: err.message || "error" });

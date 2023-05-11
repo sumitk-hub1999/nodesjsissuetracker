@@ -1,9 +1,10 @@
+<%for(var i=0;i < projects.length;i++) {%>
 <tr>
  
-    <td>1</td>
-    <td> <a href="all-issues">Web App</a></td>
-     <td><a href="all-issues">App made using react</a></td>
-    <td> <a href="all-issues">sk</a></td>
+    <td><%=i+1%></td>
+    <td> <a href="all-issues"><%=projects[i].name%></a></td>
+     <td><a href="all-issues"><%=projects[i].description%></a></td>
+    <td> <a href="all-issues"><%=projects[i].author%></a></td>
     
     <td>
       <a href="/update-project" class="btn border-shadow update">
@@ -15,3 +16,5 @@
     </td>
   </a>
 </tr>
+
+<%}%>

@@ -1,13 +1,24 @@
 const mongoose = require("mongoose");
-var schema = new mongoose.Schema({
-  name: String,
-  // required: true,
+var schema = new mongoose.Schema(
+  {
+    name: String,
+    // required: true,
 
-  description: String,
+    description: String,
 
-  author: String,
-  //required: true,
-});
+    author: String,
+    //required: true,
+    issues: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "issuedb",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const userdb = mongoose.model("userdb", schema);
 

@@ -13,14 +13,15 @@
       </tr>
     </thead>
     <tbody>
+      <%for(var i=0;i< issues.length; i++) { %>
       <tr>
-        <td>1</td>
-        <td>error</td>
+        <td><%=i+1%></td>
+        <td><%=issues[i].issue%></td>
 
-        <td>sk</td>
-        <td>error occuring in main component</td>
-        <td>error</td>
-        <td>Active</td>
+        <td><%=issues[i].author%></td>
+        <td><%=issues[i].description%></td>
+        <td><%=issues[i].label%></td>
+        <td><%=issues[i].status%></td>
         <td>
           <a href="update-issue" class="btn border-shadow update">
             <span class="text-gradient"><i class="fas fa-pencil alt"></i></span>
@@ -30,6 +31,7 @@
           </a>
         </td>
       </tr>
+      <%}%>
     </tbody>
   </table>
 </form>

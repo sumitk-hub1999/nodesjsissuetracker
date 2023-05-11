@@ -2,7 +2,7 @@ const express = require("express");
 const route = express.Router();
 const services = require("../services/render");
 const controller = require("../controllers/controller");
-const issueController = require("../controllers/issuecontroller");
+const homeController = require("../controllers/home_controller");
 /**
  * @description Root Route
  * @method GET /
@@ -41,8 +41,8 @@ route.get("/api/projects", controller.find);
 route.put("/api/projects/:id", controller.update);
 route.delete("/api/projects/:id", controller.delete);
 //issues
-route.post("/api/issues", issueController.create);
-route.get("/api/issues", issueController.find);
-route.put("/api/issues/:id", issueController.update);
-route.delete("/api/issues/:id", issueController.delete);
+route.post("/api/projects/:id", controller.createIssue);
+route.get("/api/projects/:id", controller.findIssue);
+// route.put("/api/issues/:id", issueController.update);
+// route.delete("/api/issues/:id", issueController.delete);
 module.exports = route;
